@@ -37,7 +37,7 @@ Note: We can replace the service without any modifications if the contract b/w t
 -  Availabilty
  
  
-## XMl
+## XML
 - Stands for Xtensible Markup language
 - Where and when -> XML is used for conf, data exchange and manipulation and presentation
 - Why ->  XML is platform independent, Easy to understand
