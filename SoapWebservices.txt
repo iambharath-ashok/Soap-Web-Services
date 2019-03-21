@@ -28,26 +28,28 @@ Java Standards for Implementing Webservices
 	JAX-RS is a standard for implementing RESTFull services
 		
 SOA
-- Collection of Architectural Priniciples to design and implement the Appln
-	- Appln in such a way that app consists of sevices with simple interfaces in a loosely coupled manner
+- Collection of Architectural Principles to design and implement the Appln
+	- Appln in such a way that app consists of services with simple interfaces in a loosely coupled manner
 - Maintained
 		- by W3 and OASIS
 - Contract b/w the services
 		- SOAP - WSDL
-		- REST - WADL
+		- REST - WADL,Swagger
 - Data format
 	- XML is the data format used b/w services in SOA 
 - Advantages
 	- Platform Independent -> SOA apps should be platform independent
 	- FOCUSSED Developer Roles
 	- Loosely Coupled
-	- Reusability
+	- Re-usability
 	- Cost Reduction
 	- Scalability
 	- Availability
-- Webservice implements SOA because of interoperability, Platform independent, Reusability	
+- Webservice implements SOA because of interoperability, Platform independent, Re-usability	
 - SOA is set of prinicples and webservice is a way of implementing the SOA in the service or App
 - In SOA world -> service is implementation of business logic that operates on its own
+
+----------------------------------------------------------------------
 
 Section 4
 
@@ -68,7 +70,7 @@ When XML?
 
 What is XSD?
 - XSD -> XML Schema definition
-- Grammer or blueprint for an xml document
+- Grammar or blueprint for an xml document
 - XML file that follows the XSD is a valid XML file
 - XSD is also a XML file with elements that are defined by W3C
 - Schema file will be saved with .XSD extension
@@ -169,7 +171,7 @@ Defining the attributes in the XML schema
 	</complexType>	
 	
 	
-====================================================================================================================================================
+===========================================================================================================================================
 SECTION 4: SOAP WEBSERVICES
 
 
@@ -271,7 +273,8 @@ SOAP Binding Style
 		2. Validation -> Whether the entire SOAP body can be validated against the schema in WSDL
 		3. Operation Name in SOAP message body --> webservice method that needs to invoke will be the soap message body or payload
 
-===============================================================================================================================================
+===========================================================================================================================================
+
 - SOAP Binding Style 
 		1. RPC/literal
 		2. RPC/encoded
@@ -298,7 +301,8 @@ Design Approaches for developing SOAP Webservices
 		- Usefull for legacy apps
 		
 		
-================================================================================================================================================
+===========================================================================================================================================
+
 SECTION 6: JAX-WS and JAXB
 
 JAX-WS:
@@ -344,15 +348,18 @@ JAXB
 - Webservice engines apache CXF will handle the marshalling and unmarshalling of java to xml
 - Current version 2.2
 
+-	Java Classes that are marked with JAXB Annotation can be serialize and de-serialize into Java Objects to XML and Vice-versa
 
 Maven XJC Compiler
-- Its a mvn plugin and used to generate the classes from the xsd
-- Will we executed as part of mvn build
-- plugin generates the java stubs
+- 	Its a mvn plugin and used to generate the classes from the xsd
+- 	Will we executed as part of mvn build
+- 	plugin generates the java stubs
+-	Will be used as an alternative to JDK XJC and SCHEMAGEN tool
 
 JAXB RuntimeAPI
-- Used to marshall and unmarshall the java to xml and vice versa
-- Provides classes and methods that are usefull for marshall and unmarshall the java stubs to xml 
+- 	Used to marshall and unmarshall the java to xml and vice versa
+- 	Provides classes and methods that are usefull for marshall and unmarshall the java stubs to xml
+-	Java Classes must be marked with JAXB Annotations
 
 ====================================================================================================================================================
 Java Webservices Stack
@@ -373,7 +380,7 @@ Apache CXF
 - Using CXF both SOAP and RESTFull services can be developed
 
 Why Apache CXF?
-- CXF has both SOAP and Restfull engine
+- CXF has both SOAP and Restful engine
 - Serializes and deserializes the java objects to data formats like xml and json
 - Dispatches messages to the appropriate methods
 	
@@ -389,7 +396,7 @@ Why Apache CXF?
 	- JAVA2WSDL
 	- Plugin support for maven and ant
 
-- CXF is supported by spring and springboot
+- CXF is supported by spring and spring boot
 	- Easy to configure --> just needs to add the dependency
 
 - Extend and customize 
@@ -399,13 +406,13 @@ Why Apache CXF?
 	- 3.0.3
 
 
-CXF and Springboot
-- Springboot has support for CXF
+CXF and Spring boot
+- Spring Boot has support for CXF
 - cxf-spring-boot-starter-jaxws dependency is used to developing the soap webservice
-- cxf-spring-boot-starter-jaxws will add CXF engine that implements the JAX-WS and handles all the SOAP webserice
+- cxf-spring-boot-starter-jaxws will add CXF engine that implements the JAX-WS and handles all the SOAP web-service
 
 
-- Steps to creat a SOAP WS with Apache CXF in springboot
+- Steps to create a SOAP WS with Apache CXF in springboot
 	- Create the springboot project
 	- add the cxf-spring-boot-starter-jaxws depenedency
 	- define or create the webservice endpoint with class and methods
@@ -478,8 +485,101 @@ Java SOAP Client
 
 
 
+1. 	Copy the WSDL file
+2. 	Generate Java stubs from WSDL
+3.	Create the client using Java Stu
+4.	Consume the service 
 ===============================================================================================================================
 
+Bottom up approach or Java first or code first Approach
+
+	
+Steps to develop Java first Web-service
+
+
+	1.	Create the project
+	2.	Create the endpoint
+	3.	Mark with JAXB Annotations
+	4.	Mark with JAX-WS Annotations
+	5.	Create a config class
+	6.	Runt the application
+	
+
+===============================================================================================================================
+
+WS Standards 
+
+
+Why WS standards
+
+	1.	WS Security
+
+		WS Security address below problems 
+		
+			1.	Authentication
+					
+				-	Specifies how and where the authentication details for the Request in SOAP message should be sent 
+				-	WS Security is a standard for sending the Authentication details for the service provider 
+				-	WS Security standard specifies that authentication details should be present in the Soap Header
+				
+				Authentication can be handled in 3 ways
+				
+					1.	User Name Token Profile
+					2.	X.508 Certificates
+					3.	SAML - Single Sign on to Organization multiple services
+				
+				
+			2.	Confidentiality
+			
+					-	Confidentiality can be addressed using Encryption and Decryption of Soap messages
+					
+			3.	Integrity 
+			
+					- Integrity will be addressed by using XML Signature
+					-	Service Requester will be Signature to the request xml 
+					-	Receiver will recalculate the signature and at it's end to make sure that message is not tampered in middle of transition
+				
+	2.	MTOM 
+	
+		-	MTOM is a WS Standard used for exchanging files
+	
+	
+	3. WS Addressing
+	
+		-	Used to make Asynchronous web service calls
+		
+	4.	WS Policy 
+
+	5.	WS-Secure Conversation
+				
+================================================================================================================================
+	
+		
+1. User Name Token Profile
+
+	Steps to implement User Name Token Profile
+	
+	1.	Add security dependency
+	2. 	Create a Java soap client
+	3.	Configure the WSS4J Interceptors
+	4.	Create the Password  Callback
+================================================================================================================================
+
+MTOM - Message Transmission and Optimization Mechanism
+
+MTOM 
+	
+	-	MTOM is standard from WS used to exchange the files over Soap web-service
+	-	MTOM is used to compress the attachment in the Soap Web-services
+	-	WS Attachment is earlier WS Standard for Sending the attachments over the Soap Web-services
+	-	DataHandler should be used as an parameter to Web-service methods
+		-	Incoming attachment will be bind to the DataHandler instances
+		
+	
+================================================================================================================================	
+	
+	
+================================================================================================================================
 SECTION 14: JAX-WS Handlers
 
 JAX-WS Handlers
@@ -496,7 +596,7 @@ JAX-WS Handlers
 	
 Two Types of Handlers
 - SOAPHandlers
-	- Have access to entire message like protocal info(HTTP Headers), SOAP headers, SOAP Body
+	- Have access to entire message like protocol info(HTTP Headers), SOAP headers, SOAP Body
 	- Implemented by implementing interface SOAPHandler<SOAPMessgeContext>
 	- SOAPMessageContext will wrap the whole SOAP Message
 	- life cycle methods of SOAPHandler are
@@ -591,7 +691,7 @@ REST Web service concepts
 - REST supports multiple data formats because HTTP supports MIME Types
 - REST is stateless as HTTP is stateless
 - State is maintained at client side and not at client side
-- REST resouces are easy to access
+- REST resources are easy to access
 - REST provides single interface to perform curd operations
 
 
@@ -600,9 +700,9 @@ RESTFULL services advantages
 
 - REST resources are easy to access
 - REST is interoperabe and supports multiple fomats
-- Interoperability  and multipel data foramts --> applications written any language can communicate with each other using http
-- Scalability -> we can easily scale the applications to multiple servers throuhg load balancers
-	- cache can be enbaled at client side so that performance of application wil increase
+- Interoperability  and multiple data foramts --> applications written any language can communicate with each other using http
+- Scalability -> we can easily scale the applications to multiple servers through load balancers
+	- cache can be enabled at client side so that performance of application wil increase
 - Availability - more the instances of apps, availability will gets increase
 
 When to use RESTFul Services
@@ -656,17 +756,17 @@ WHEN
 SECTION 17 : REST Implementation
 
 4 Design Steps for RESTFul services
--	1. Identify the resouces
+-	1. Identify the resources
 -	2. Create the endpoints to access the resources
 -	3. Assign the HTTP methods
 -	4. Choose the data format for exchange 
 	
 JAX-RS
-- JAX-RS is a specification and API from orcle
+- JAX-RS is a specification and API from oracle
 - Specification 
 	- Is a set of rule and guidelines
 	- Webservice engines like CXF and Jersey will implement the specification(JAX-RS) standards
--API
+- API
 	- Developers will implement the APIs by using the annotations
 	- API is consists of annotations
 
@@ -695,4 +795,142 @@ JAX-RS
 	
 		
 
+========================================================================================================
+
+SECTION 18: ADDING JSON SUPPORT
+
+
+========================================================================================================
+
+SECTION 19: REST Error Handling
+
+
+HTTP Status Codes: 
+
+
+	-	Success 200 - 399
+	- 	Failure 400 - 599
+	
+
+
+========================================================================================================
+SECTION 20 : JAX-RS Client API - Creating Java REST Clients
+
+Various clients to consume the REST Services 
+
+	1.	java.net.URL
+	2.	Apache HTTP
+	3.	JAX-RS Client API
+
+	
+JAX-RS Client API
+
+	-	Easy to create RESTful Client Application using JAX-RS client API and its annotations
+	- 	Key interfaces of JAX-RS Client API are 
+	
+		-	Client Builder - starting point
+		-	Client - communication channel
+		-	Web target - unique resource or URL on the server
+		-	Invoker.Builder - to invoke HTTP methods 
+		-	Entity - Data and data type that needs to be exchanged
 		
+	-	Implementation for this interfaces will be provided by Web-service stacks like Jersey, CXF
+	
+
+
+========================================================================================================
+
+SECTION 21 : JAX-RS Injection
+
+
+- 	JAX-RS Injection annoations like @PathParam, @QueryParam, @HeaderParam, @CookiesParam, @FormParam
+
+
+
+========================================================================================================
+
+SECTION 22 : ASYNCHRONOUS REST
+
+
+
+ASYNC REST service will return HTTP 202 status code indicating that request has been accepted
+
+
+========================================================================================================
+
+SECTION 23: Securing REST Web-services
+
+
+-	Basic authentication is part of HTTP Standard 
+-	Basic authentication will sent in HTTP Headers from Client to Provider
+
+
+
+========================================================================================================
+
+SECTION 24: REST and Spring Security
+
+
+- 	Implementing Basic Authentication on RESTful Services using Spring Security
+-	 Add spring boot security dependency to enable basic authentication on the Restful services
+
+========================================================================================================
+
+SECTION 25: OAuth Concepts
+
+What is OAuth?
+	
+	Authentication
+		-	Identifying or Recognizing the app of person for the Resources
+		
+	Authorization
+		-	Authorizing person or app to perform set of Operations to Resources
+
+	
+	-	OAuth is a Authentication and Authorization Standard
+	-	Federated Authentication and Delegated Authorization are the Standards of OAuth
+	-	One application is consuming the service of another Application as part of Authentication and Authorization Process
+	-	Like Third Party Application cosuming the service of Google Mail for Authentication
+
+Why OAuth
+When OAuth
+
+
+
+========================================================================================================
+
+
+SECTION 26: REST Attachments
+
+
+
+========================================================================================================
+
+SECTION 27: Jersey 
+
+
+
+
+========================================================================================================
+
+SECTION 28: REST using Spring MVC 
+
+
+
+
+========================================================================================================
+
+
+
+
+
+
+========================================================================================================
+
+
+
+
+
+
+
+
