@@ -690,7 +690,7 @@ REST Web service concepts
 - REST - Representation State Transfer
 - REST supports multiple data formats because HTTP supports MIME Types
 - REST is stateless as HTTP is stateless
-- State is maintained at client side and not at client side
+- State is maintained at client side and not at server side
 - REST resources are easy to access
 - REST provides single interface to perform curd operations
 
@@ -699,30 +699,30 @@ REST Web service concepts
 RESTFULL services advantages
 
 - REST resources are easy to access
-- REST is interoperabe and supports multiple fomats
+- REST is interoperable and supports multiple fomats
 - Interoperability  and multiple data foramts --> applications written any language can communicate with each other using http
 - Scalability -> we can easily scale the applications to multiple servers through load balancers
 	- cache can be enabled at client side so that performance of application wil increase
 - Availability - more the instances of apps, availability will gets increase
 
 When to use RESTFul Services
--  REST will be used when  both producer and consumer have an mutual understanding of contract
-	- contract -> what is the data format and how to consume this
-	- No formal contract b/w producer and consumer
-- Supports Multiple Data Formats 
-- Bandwith and Memory
-	- unlike soap, messages reduces overhead in mobile devices
-	- consumer less bandwidth -> required for mobile devices
-	- faster data exchange
-- Caching
-	- HTTP Statelessness allows us to cache all webservices responses
-	- Cache will increase the application response as we can send the response from cache instead of application sending the response back
-		- caching framework can be used 
-		- just needs to configure them
-- Existing Logic can be exposed easily
-	- saves lots of times and developer productivity
-		- can make use for new UI frameworks like angular and android
-		- Easy to integrate with new frameworks and mobile devices
+-  	REST will be used when  both producer and consumer have an mutual understanding of contract
+	- 	contract -> what is the data format and how to consume this
+	- 	No formal contract b/w producer and consumer
+- 	Supports Multiple Data Formats 
+- 	Bandwith and Memory
+	- 	unlike soap, messages reduces overhead in mobile devices
+	- 	consumer less bandwidth -> required for mobile devices
+	- 	faster data exchange
+- 	Caching
+	- 	HTTP Statelessness allows us to cache all webservices responses
+	- 	Cache will increase the application response as we can send the response from cache instead of application sending the response back
+		- 	caching framework can be used 
+		- 	just needs to configure them
+- 	Existing Logic can be exposed easily
+	- 	saves lots of times and developer productivity
+		- 	can make use for new UI frameworks like angular and android
+		- 	Easy to integrate with new frameworks and mobile devices
 		
 		
 		
@@ -774,6 +774,7 @@ JAX-RS
 	
 - Annotations 
 	- @Path("/users/{username}")
+	
 	- Http methods
 		- @Get
 		- @Put
@@ -783,9 +784,10 @@ JAX-RS
 		- @Consumes("text/plain")
 		- @Produces({"application/xml","application/json"})
 	- Parameters
-		- @PathParam
-		- @QueryParam
-		- @FormParam
+		- 	@PathParam
+		- 	@QueryParam
+		- 	@FormParam
+		-	@RequestParam
 
 - Creating the REST project
 	- start.spring.io
