@@ -923,7 +923,15 @@ SECTION 28: REST using Spring MVC
 ========================================================================================================
 
 
+#	Developing Contract First Web Services
 
+-	Create Request and Responses Xml
+-	Define XSD for Request and Responses
+-	Add Jaxb2 maven plugin
+-	Generate Java Stubs having JAXB annotations using Jaxb2 xjc plugin
+-	Expose and Publish the web service
+-	Get the WSDL from the Published Services
+-	Start consuming services using WSDL with soap client
 
 
 
